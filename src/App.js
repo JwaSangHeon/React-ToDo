@@ -94,17 +94,20 @@ const App = () => {
     setText(e.target.value);
   }, []);
 
-  const addTodo = useCallback((e) => {
-    e.preventDefault();
-    const nextTodo = {
-      id: nextId.current,
-      text: text,
-      checked: false,
-    };
-    dispatch({ type: "INSERT", nextTodo });
-    setText("");
-    nextId.current += 1;
-  }, []);
+  const addTodo = useCallback(
+    (e) => {
+      e.preventDefault();
+      const nextTodo = {
+        id: nextId.current,
+        text: text,
+        checked: false,
+      };
+      dispatch({ type: "INSERT", nextTodo });
+      setText("");
+      nextId.current += 1;
+    },
+    [text]
+  );
 
   const onRemoveClick = useCallback((id) => {
     dispatch({ type: "REMOVE", id });
